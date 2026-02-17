@@ -29,8 +29,8 @@ Only messages in your self-chat trigger the bridge. Messages to other people are
 ### Option A: npx (zero install)
 
 ```bash
-mkdir whatsapp-claude && cd whatsapp-claude
-npx whatsapp-claude
+mkdir claude-code-whatsapp && cd claude-code-whatsapp
+npx claude-code-whatsapp
 ```
 
 First run launches an interactive setup wizard:
@@ -48,14 +48,14 @@ First run launches an interactive setup wizard:
 Then run again to start:
 
 ```bash
-npx whatsapp-claude
+npx claude-code-whatsapp
 ```
 
 ### Option B: Clone and run
 
 ```bash
-git clone https://github.com/dashiz91/whatsapp-claude.git
-cd whatsapp-claude
+git clone https://github.com/dashiz91/claude-code-whatsapp.git
+cd claude-code-whatsapp
 npm install
 ```
 
@@ -135,8 +135,8 @@ Claude Code processes it and responds right in the chat.
 Run on any VPS with Node.js and Claude Code CLI:
 
 ```bash
-git clone https://github.com/dashiz91/whatsapp-claude.git
-cd whatsapp-claude
+git clone https://github.com/dashiz91/claude-code-whatsapp.git
+cd claude-code-whatsapp
 npm install && npm run build
 ```
 
@@ -152,16 +152,16 @@ For long-running deployment, use `pm2` or `systemd`:
 
 ```bash
 npm install -g pm2
-pm2 start dist/cli.js --name whatsapp-claude
+pm2 start dist/cli.js --name claude-code-whatsapp
 pm2 save
 ```
 
 ## How It's Different from WhatsApp MCP
 
-| | **whatsapp-claude** | **WhatsApp MCP** |
+| | **claude-code-whatsapp** | **WhatsApp MCP** |
 |---|---|---|
 | **Direction** | Phone → Claude (you control Claude from WhatsApp) | Claude → WhatsApp (Claude reads/sends your chats) |
-| **Setup** | `npx whatsapp-claude` | Go compiler + Python + C compiler + MCP config |
+| **Setup** | `npx claude-code-whatsapp` | Go compiler + Python + C compiler + MCP config |
 | **Processes** | Single process | Two (Go bridge + Python server) |
 | **Privacy** | Self-chat only, no access to other conversations | Exposes all chats to Claude |
 | **Cloud deploy** | Yes, any server with Node.js | No, requires Claude Desktop locally |

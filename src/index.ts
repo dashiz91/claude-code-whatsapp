@@ -48,7 +48,7 @@ function acquireSingleInstanceLock(): void {
 
   const pidText = existingPid ? ` (PID ${existingPid})` : '';
   throw new Error(
-    `Another whatsapp-claude instance is already running${pidText}. Stop it before starting a new one.`,
+    `Another claude-code-whatsapp instance is already running${pidText}. Stop it before starting a new one.`,
   );
 }
 

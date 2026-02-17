@@ -1,12 +1,12 @@
 {
-  "name": "whatsapp-claude",
+  "name": "claude-code-whatsapp",
   "version": "1.0.0",
   "description": "Send a WhatsApp message to yourself, get Claude Code responses back. Full CLI capabilities from your phone.",
   "author": "Roberto M (dashiz91)",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dashiz91/whatsapp-claude"
+    "url": "https://github.com/dashiz91/claude-code-whatsapp"
   },
   "keywords": [
     "whatsapp",
@@ -19,7 +19,7 @@
   ],
   "main": "dist/index.js",
   "bin": {
-    "whatsapp-claude": "dist/cli.js"
+    "claude-code-whatsapp": "dist/cli.js"
   },
   "files": [
     "dist",
