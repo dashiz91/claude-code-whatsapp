@@ -40,7 +40,7 @@ First run launches an interactive setup wizard:
 
   Your phone number (international, no +, e.g. 14155551234): 14155551234
   Project directory for Claude Code (/current/dir): /path/to/your/project
-  Claude model (leave blank for default):
+  Claude model (claude-opus-4-6):
 
   Created .env — run the same command again to start the bridge.
 ```
@@ -72,8 +72,8 @@ ALLOWED_PHONE=14155551234
 # The directory Claude Code will work in
 PROJECT_DIR=/path/to/your/project
 
-# Optional: override the Claude model
-# CLAUDE_MODEL=claude-sonnet-4-5-20250929
+# Claude model (defaults to claude-opus-4-6)
+# CLAUDE_MODEL=claude-opus-4-6
 ```
 
 Start the bridge:
@@ -122,7 +122,7 @@ Claude Code processes it and responds right in the chat.
 |----------|----------|-------------|
 | `ALLOWED_PHONE` | Yes | Your phone number, international format without `+` (e.g. `14155551234`) |
 | `PROJECT_DIR` | Yes | Working directory for Claude Code |
-| `CLAUDE_MODEL` | No | Override the default model (e.g. `claude-sonnet-4-5-20250929`) |
+| `CLAUDE_MODEL` | No | Claude model to use (defaults to `claude-opus-4-6`) |
 
 ## Security
 
