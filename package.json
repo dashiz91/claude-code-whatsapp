@@ -1,0 +1,50 @@
+{
+  "name": "whatsapp-claude",
+  "version": "1.0.0",
+  "description": "Send a WhatsApp message to yourself, get Claude Code responses back. Full CLI capabilities from your phone.",
+  "author": "Roberto M (dashiz91)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dashiz91/whatsapp-claude"
+  },
+  "keywords": [
+    "whatsapp",
+    "claude",
+    "claude-code",
+    "ai",
+    "cli",
+    "bridge",
+    "anthropic"
+  ],
+  "main": "dist/index.js",
+  "bin": {
+    "whatsapp-claude": "dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    ".env.example"
+  ],
+  "scripts": {
+    "dev": "tsx src/cli.ts",
+    "build": "tsc",
+    "start": "node dist/cli.js",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@whiskeysockets/baileys": "^7.0.0-rc.9",
+    "dotenv": "^16.4.7",
+    "pino": "^9.6.0",
+    "qrcode-terminal": "0.12.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.12.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
