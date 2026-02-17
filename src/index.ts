@@ -91,7 +91,7 @@ async function main(): Promise<void> {
     process.exit(1);
   }
 
-  const model = process.env.CLAUDE_MODEL || undefined;
+  const model = process.env.CLAUDE_MODEL || 'claude-opus-4-6';
 
   // Initialize Claude Code
   init({ projectDir, model });

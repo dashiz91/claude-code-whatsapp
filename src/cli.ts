@@ -36,20 +36,16 @@ async function setup(): Promise<void> {
     }
 
     const projectDir = await ask(rl, '  Project directory for Claude Code', process.cwd());
-    const model = await ask(rl, '  Claude model (leave blank for default)');
+    const model = await ask(rl, '  Claude model', 'claude-opus-4-6');
 
     const lines = [
       `ALLOWED_PHONE=${phone}`,
       '',
       `PROJECT_DIR=${projectDir}`,
       '',
+      `CLAUDE_MODEL=${model}`,
+      '',
     ];
-
-    if (model) {
-      lines.push(`CLAUDE_MODEL=${model}`, '');
-    } else {
-      lines.push('# CLAUDE_MODEL=claude-sonnet-4-5-20250929', '');
-    }
 
     fs.writeFileSync(ENV_PATH, lines.join('\n'), 'utf8');
     console.log(`\n  Created .env — run the same command again to start the bridge.\n`);
