@@ -11,6 +11,7 @@ import makeWASocket, {
   WASocket,
   proto,
   makeCacheableSignalKeyStore,
+  fetchLatestBaileysVersion,
 } from '@whiskeysockets/baileys';
 import { Boom } from '@hapi/boom';
 import pino from 'pino';
@@ -63,7 +64,21 @@ async function connect(): Promise<void> {
     teardownSocket();
 
     const { state, saveCreds } = await useMultiFileAuthState(AUTH_DIR);
+
+    // Fetch the current WhatsApp Web version. Without this, Baileys uses the version
+    // baked into the build; WhatsApp now rejects a stale version with a 405 close
+    // *before* issuing a QR, so the connection just loops and no QR ever appears.
+    let version: [number, number, number] | undefined;
+    try {
+      const fetched = await fetchLatestBaileysVersion();
+      version = fetched.version;
+      log(`Using WhatsApp Web version ${version.join('.')} (isLatest=${fetched.isLatest}).`);
+    } catch (err: any) {
+      log(`Could not fetch latest WA version (${err?.message || err}); using bundled default.`);
+    }
+
     const nextSocket = makeWASocket({
+      version,
       auth: {
         creds: state.creds,
         keys: makeCacheableSignalKeyStore(state.keys, logger),
