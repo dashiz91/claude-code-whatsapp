@@ -310,7 +310,28 @@ function resolveClaudeRuntime(): ClaudeRuntime {
     }
   }
 
-  // Fallback for unusual setups.
+  // Native installer: claude.exe is a real executable, so spawn it WITHOUT a shell.
+  // shell:false passes each arg verbatim; the broken `shell:true` fallback below
+  // concatenates args unquoted, so any multi-word prompt is split on spaces and
+  // `-p` only receives the first word. Prefer the exe to avoid that.
+  const exeCandidates: string[] = [];
+  const exeOverride = process.env.CLAUDE_EXE?.trim();
+  if (exeOverride) exeCandidates.push(exeOverride);
+  if (process.env.USERPROFILE) {
+    exeCandidates.push(path.join(process.env.USERPROFILE, '.local', 'bin', 'claude.exe'));
+  }
+  for (const dir of (process.env.PATH || '').split(path.delimiter)) {
+    if (dir) exeCandidates.push(path.join(dir, 'claude.exe'));
+  }
+  for (const candidate of exeCandidates) {
+    if (candidate && fs.existsSync(candidate)) {
+      return { command: candidate, prefixArgs: [], shell: false };
+    }
+  }
+
+  // Last resort. NOTE: shell:true + an args array does not escape arguments, so a
+  // prompt containing spaces will be truncated at the first word. Only reached when
+  // neither cli.js nor claude.exe can be located.
   return { command: 'claude', prefixArgs: [], shell: true };
 }
 

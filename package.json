@@ -4,6 +4,7 @@
   "description": "Send a WhatsApp message to yourself, get Claude Code responses back. Full CLI capabilities from your phone.",
   "author": "Roberto M (dashiz91)",
   "license": "MIT",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/dashiz91/claude-code-whatsapp"
@@ -46,5 +47,11 @@
   },
   "engines": {
     "node": ">=18"
+  },
+  "allowScripts": {
+    "@whiskeysockets/baileys@7.0.0-rc.9": true,
+    "esbuild@0.27.3": true,
+    "protobufjs@7.5.4": true,
+    "sharp@0.34.5": true
   }
 }
